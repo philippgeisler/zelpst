@@ -1,3 +1,43 @@
+# zelpst /zɛlpst/
+
+[zɛlpst](http://zelpst.de) is at the time of writing the personal 
+blog of Philipp Geisler. The code is based on a clone of
+[getkirby/plainkit](https://github.com/getkirby/plainkit) which
+again is the minimal edition of [Kirby](http://getkirby.com) by
+[Christian Allgeier](https://github.com/bastianallgeier) (
+[ibid.](http://getkirby.com)).
+
+This repository contains adjustments to only the most
+basic publicly viewable content like e.g. 
+page headers/titles of individual pages
+as they are part of the Kirby templates.
+
+The actual blog content can be found in a separate
+repository on GitHub, [zelpst-content](https://github.com/philippgeisler/zelpst-content).
+
+It does contain all changes to layout, basically the theme,
+and a couple of additional features like e.g. forwarding of
+short URLs.
+
+## Contributing
+
+As the entire layout is a concoction of my own, I will be
+thankful for any suggestions on how to improve my code,
+especially of what is my personal (mis)understanding of CSS.
+
+## Usage
+
+My personal changes, mainly the files making up my site layout,
+are free to clone/use/share as long as you keep a reference 
+to this repository and the original author, Philipp Geisler.
+A link back to http://zelpst.de would be appreciated.
+
+*Everything else is subject to the terms of use/licensing for
+the original Kirby CMS. The original README including licensing
+information is included below.*
+
+-----
+
 # Kirby
 
 Kirby is a file-based CMS.
