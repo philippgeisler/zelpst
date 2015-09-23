@@ -1,0 +1,415 @@
+/* zelpst-styled for http://www.zelpst.de */
+/* Philipp Geisler/zelpst 2013            */
+
+/* FONTS */
+/* Google Fonts loaded in HTML HEAD */
+/* ZXX - (site) title font */
+@font-face {
+  font-family: "ZXX_Bold";
+  src: url("../fonts/ZXX_Bold.otf");
+}
+@font-face {
+  font-family: "ZXX_Camo";
+  src: url("../fonts/ZXX_Camo.otf");
+}
+@font-face {
+  font-family: "ZXX_False";
+  src: url("../fonts/ZXX_False.otf");
+}
+@font-face {
+  font-family: "ZXX_Noise";
+  src: url("../fonts/ZXX_Noise.otf");
+}
+@font-face {
+  font-family: "ZXX_Sans";
+  src: url("../fonts/ZXX_Sans.otf");
+}
+@font-face {
+  font-family: "ZXX_Xed";
+  src: url("../fonts/ZXX_Xed.otf");
+}
+
+#stage1 { display: none; }
+#stage2 { display: none; }
+#stage3 { display: none; }
+
+/* PALETTE */
+/*
+not-quite-white: rgb(246, 246, 244);
+blueish-grey:    rgb( 64,  64,  96);
+greyish-blue:    rgb( 64,  64, 164);
+
+marker colours from "Markers" colour theme by 
+cpnatwork (http://kuler.adobe.com/#themeID/1935820):
+
+yellow-marker: rgb(255, 235, 144);
+blue-marker:   rgb(139, 232, 255);
+green-marker:  rgb(146, 255, 140);
+*/
+
+/* POSITIONING/GRID */
+/* 
+Here's the rough idea:
+ - a two column design, one for articles, one for asides and thumbs
+ - main column should more or less stay same width during resizes or
+ on different devices
+ - asides should "get out of the way", move inline, when screen width
+ too small
+ - a "nice" ratio of main to asides column width, Fibonacci-ish 5:2
+ - em/rem-based, as basis assuming 1em ~16px => 1024px ~34em
+@article-width: 30rem; 5*6
+@asides-width:  12rem; 2*6
+@margin-width:   1rem; 
+
+@footer-height:  1.4rem;
+
+ center the layout on the article column, so let's calculate
+ some "full" width including margins of article and asides
+ => @article-width + (2 * (@asides-width + @margin-width)); 
+
+@virtual-width: 56rem;
+*/
+
+/* getting serious: all the rest */
+html, body {
+	background-color: rgb(246, 246, 244);
+	height: 100%;
+	min-height: 100%;
+    font: 'Vollkorn', serif;
+    color: rgb( 64,  64,  96);
+
+}
+
+::-moz-selection { background-color: rgb(255, 235, 144); }
+::selection      { background-color: rgb(255, 235, 144); }
+
+a {
+	text-decoration: none;
+}
+
+h1 a:link, h1 a:visited {
+    color: rgb( 64,  64,  96);
+    background-color: rgb(246, 246, 244);
+}
+
+p a:link {
+	background-color: rgb(139, 232, 255);
+	color: black;
+}
+
+p a:visited {
+	background-color: rgb(139, 232, 255);
+	color: rgb( 64,  64,  96);
+}
+
+a::-moz-selection { background-color: rgb(146, 255, 140); }
+a::selection      { background-color: rgb(146, 255, 140); }
+
+b, strong { font-weight: 700; }
+i, em     { font-style:  italic; }
+
+/* CONTENT: article, asides/footnotes, images... */
+section.content {
+    clear: both;
+	overflow: hidden;
+}
+
+/* asides are used literally as notes relating to the main text, thus being part of the <article> as a whole; hope that’s proper use of the tag */
+article {
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+	width: 56rem;
+}
+article figure {
+    display: inline-block;
+    width: 30rem;
+    margin: 0 auto 1rem 13rem; 
+}
+article figure a:link {
+    background-color: transparent;
+}
+article figure img {
+    width: 100%;
+}
+figcaption {
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    text-align: right;
+    margin: 0.2rem 0;
+}
+
+article	p {
+    margin: 0rem auto 1rem 13rem; /* (@asides-width + @margin-width) */
+    width: 30rem;
+    font: 1em/1.5em 'Vollkorn', serif;
+    float: left;
+}
+
+/* article blockquote p:before {
+    content: "„";
+} */
+
+article blockquote {
+    width: 28rem;
+}
+
+article	blockquote p {
+    font-style: italic;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+    padding: .2rem 0 1.2rem 1rem;
+    width: 28rem;
+}
+
+article.banner {
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-left: 13rem; /* (@asides-width + @margin-width) */
+    padding-bottom: 1rem;
+    width: 30rem;
+}
+
+/* HEADER (the logo version has been commented out) */
+header h1 {
+    width: auto;
+    margin: 2rem 0 0 0;
+    padding: 0;
+	text-align: center;
+	font-size: 5rem;
+
+	/* LOGO: img {
+		width: 30rem;
+		margin: 1rem;
+	} */
+}
+
+h1 {
+    font: 1.5rem 'Vollkorn', serif, bold;
+    padding: 2rem 0 1rem 0;
+}
+
+article.bloglist h1 {
+    margin-left: 11rem;
+}
+article.bloglist h1:before {
+    font-family: 'Nothing You Could Do', sans-serif;
+    color: rgb( 64,  64, 164);
+    content: '–> ';   
+}
+
+h2 {
+    font: 1.2rem 'Vollkorn', serif, bold;
+    padding: 1rem 0;
+}
+
+h3 {
+    font: 1rem 'Vollkorn', serif;
+    padding: 1rem 0;
+}
+
+h4 {
+    font: 1rem 'Vollkorn', serif, bold;
+    padding: 1rem 0;
+}
+
+h5 {
+    font: 1rem 'Vollkorn', serif;
+    padding: 1rem 0;
+}
+
+code {
+    font-family: monospace;
+    color: black;
+}
+
+pre {
+    margin-left: 13rem; /* (@asides-width + @margin-width) */
+    padding-bottom: 1rem;
+    width: 30rem;
+    background-color: #ddd;
+    line-height: .6rem;
+    padding: 1rem;
+}
+
+ul, ol {
+    font: 1rem 'Vollkorn', serif;
+    margin-left: 13rem;
+    list-style-position: outside;
+    padding-bottom: 1rem;
+}
+ul {
+    list-style-type: disc;
+}
+ol {
+    list-style-type: decimal;
+}
+
+aside {
+    float: right;
+    width: 12rem;
+    font-family: 'Nothing You Could Do', sans-serif;
+    color: rgb( 64,  64, 164);
+    font-size: 1rem;
+    line-height: 1.1rem;
+    padding-top: 0.2rem;
+    padding-bottom: 1rem;
+}
+aside figure {
+    margin: 0;
+}
+aside figure img {
+    max-width: 12rem;
+}
+aside figcaption {
+    color: rgb( 64,  64,  96);
+    font-size: 0.6rem;
+    margin: -0.3rem 0;
+    text-align: left;
+}
+aside.createdAt {
+    padding: 2.8rem 0 1rem 0;
+}
+
+/* FOOTER/NAVIGATION BOTTOM */
+/* article navigation (previous/next links) */
+nav {
+    font: 1.2rem 'Nothing You Could Do', sans-serif;
+}
+
+.art-nav {
+	line-height: 1.6rem;
+    color: rgb( 64,  64, 164);
+}
+
+.art-nav a {
+    font: 1.2rem 'Vollkorn', serif;
+    color: rgb( 64,  64, 96);
+    background-color: rgb(139, 232, 255);
+}
+
+.prev {
+	float: left;
+	margin: 2rem auto 5rem 10%;
+}
+
+.next {
+	float: right;
+	margin: 2rem 10% 5rem auto;
+}
+
+footer {
+	clear: both;
+	height: 1.4rem;
+	width: 100%;
+    font-family: sans-serif;
+    font-size: 0.7rem;
+}
+
+.feet {
+	bottom: 0 0;
+	clear: both;
+	width: 100%;
+}
+
+.toe {
+	float: right;
+	padding: 0.1rem 0.3rem;
+}
+
+.toe a {
+    background-color: transparent;
+}
+
+.toe a:visited {
+    color: black;
+}
+
+.toe a:link {
+    color: black;
+}
+
+#license {
+	display: inline;
+}
+#cc-logo { 
+    display: inline;
+    padding: 0;
+}
+#cc-meta { display: none; }
+
+#impressum address p {
+    border: solid rgb( 64,  64,  96) 1px;
+    padding: .5rem .6rem;
+}
+
+/* some responsiveness */
+	/* Safari on iPad/iOS 5.1.1 as of March 2013
+	   does not like "rem" units here...*/
+@media screen and (max-width: 56em) { 
+	
+	article {
+		width: 30rem;
+    }
+		
+	article p, h1, h2, h3, h4, h5, ol, ul {
+        width: 30rem; /* not entirely sure why I had to repeat this */
+        float: none;
+        margin-left: 0;
+    }
+    
+    article.bloglist h1 {
+        margin-left: 0;
+    }
+    
+    ol, ul {
+        list-style-position: inside;
+        padding-left: 0.1rem;
+    }
+    ul {
+        list-style-type: disc;
+    }
+    ol {
+        list-style-type: decimal;
+    }        
+
+    article figure {
+        margin-left: 0; 
+    }
+    
+	aside {
+        float: none;
+        text-align: right;
+        width: 30rem;
+    }
+    aside figure img {
+        width: 100%;
+        min-width: 30rem;
+        max-width: 30rem;
+    }
+    aside.createdAt {
+        padding: 0;
+        margin-top: 2rem;
+        margin-bottom: -2rem;
+    }
+
+}
+
+@media screen and (max-width: 35em) {
+	
+	header h1 {
+			margin: 1em auto 1em auto;
+	}
+	  
+    article {
+		width: 90%;
+    }
+    article p {
+        width: 100%;
+    }
+   
+    aside {
+        width: 100%;
+    }
+}

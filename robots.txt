@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /kirby/
+Disallow: /site/
+Disallow: /panel/
+Disallow: /thumbs/
+Disallow: /content/sitemap/
+
+sitemap: http://yoursite.com/sitemap
